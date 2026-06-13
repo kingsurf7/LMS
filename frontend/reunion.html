@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduLMS - Réunion en direct</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+</head>
+<body class="corps-reunion">
+    <div class="conteneur-reunion">
+        <!-- Barre latérale gauche - Participants et chat -->
+        <div class="barre-laterale gauche">
+            <div class="section-participants">
+                <h3>Participants (<span id="compteurParticipants">0</span>)</h3>
+                <div id="listeParticipants" class="liste-participants"></div>
+            </div>
+            <div class="section-chat">
+                <h3>Chat</h3>
+                <div id="messagesChat" class="messages-chat"></div>
+                <div class="conteneur-saisie-chat">
+                    <input type="text" id="saisieChat" placeholder="Écrivez un message...">
+                    <button id="boutonEnvoyerChat" class="btn btn-principal">Envoyer</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Zone principale de la réunion -->
+        <div class="zone-principale">
+            <div class="en-tete-reunion">
+                <h2 id="titreReunion">Réunion en cours</h2>
+                <div class="boutons-controle">
+                    <button id="boutonMicro" class="bouton-controle" title="Micro">
+                        <span class="icone">🎤</span>
+                    </button>
+                    <button id="boutonVideo" class="bouton-controle" title="Caméra">
+                        <span class="icone">📹</span>
+                    </button>
+                    <button id="boutonPartageEcran" class="bouton-controle" title="Partager l'écran">
+                        <span class="icone">🖥️</span>
+                    </button>
+                    <button id="boutonEnregistrement" class="bouton-controle" title="Enregistrer">
+                        <span class="icone">🔴</span>
+                    </button>
+                    <button id="boutonQuitter" class="bouton-controle danger" title="Quitter">
+                        <span class="icone">🚪</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="conteneur-video">
+                <div id="videoLocale" class="boite-video locale">
+                    <video id="lecteurVideoLocale" autoplay playsinline muted></video>
+                    <div class="etiquette-video">Vous</div>
+                </div>
+                <div id="videosDistantes" class="videos-distantes">
+                    <!-- Les vidéos des autres participants apparaîtront ici -->
+                </div>
+            </div>
+
+            <div class="info-reunion">
+                <div class="conteneur-lien-reunion">
+                    <span>Lien d'invitation: </span>
+                    <input type="text" id="lienReunion" readonly>
+                    <button id="boutonCopierLien" class="btn btn-petit">Copier</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Barre latérale droite - Partage d'écran et ressources -->
+        <div class="barre-laterale droite">
+            <div class="section-partage-ecran">
+                <h3>Partage d'écran</h3>
+                <div id="ecranPartage" class="ecran-partage">
+                    <div class="aucun-partage">Aucun partage d'écran</div>
+                </div>
+            </div>
+            <div class="section-ressources">
+                <h3>Ressources</h3>
+                <div class="liste-ressources">
+                    <button class="bouton-ressource" onclick="ouvrirTableauBlanc()">
+                        📝 Tableau blanc
+                    </button>
+                    <button class="bouton-ressource" onclick="creerSondage()">
+                        📊 Sondage rapide
+                    </button>
+                    <button class="bouton-ressource" onclick="partagerDocument()">
+                        📄 Partager un document
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Tableau blanc -->
+    <div id="modalTableauBlanc" class="modal">
+        <div class="contenu-modal grand">
+            <span class="fermer">&times;</span>
+            <h2>Tableau blanc collaboratif</h2>
+            <canvas id="tableauBlanc" width="800" height="500" style="border: 2px solid #ccc; cursor: crosshair;"></canvas>
+            <div class="outils-tableau">
+                <button class="btn btn-petit" onclick="definirOutil('stylo')">✏️ Stylo</button>
+                <button class="btn btn-petit" onclick="definirOutil('gomme')">🧽 Gomme</button>
+                <button class="btn btn-petit" onclick="effacerTableau()">🗑️ Effacer tout</button>
+                <button class="btn btn-principal btn-petit" onclick="sauvegarderTableau()">💾 Sauvegarder</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/reunion.js"></script>
+</body>
+</html>
