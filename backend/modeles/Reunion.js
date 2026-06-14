@@ -28,7 +28,7 @@ class Reunion {
             `INSERT INTO reunions (titre, description, enseignant_id, cours_id, lien_reunion, heure_programmee, duree) 
              VALUES ($1, $2, $3, $4, $5, $6, $7) 
              RETURNING *`,
-            [titre, description, enseignantId, coursId, lienReunion, heureProgrammee, duree]
+            [titre, description, enseignantId, coursId, lienReunion, heureProgrammee, duree || 60]
         );
         
         return resultat.rows[0];
@@ -196,6 +196,23 @@ class Reunion {
     }
 
     /**
+     * Récupère tous les participants d'une réunion
+     * @param {number} reunionId - ID de la réunion
+     * @returns {Promise<Array>} Liste des participants
+     */
+    static async getParticipants(reunionId) {
+        const resultat = await pool.query(`
+            SELECT pr.*, u.nom, u.role, u.email
+            FROM participants_reunion pr
+            JOIN utilisateurs u ON pr.utilisateur_id = u.id
+            WHERE pr.reunion_id = $1
+            ORDER BY pr.heure_arrivee ASC
+        `, [reunionId]);
+        
+        return resultat.rows;
+    }
+
+    /**
      * Termine une réunion (enseignant uniquement)
      * @param {number} reunionId - ID de la réunion
      * @returns {Promise<Object>} Réunion mise à jour
@@ -225,4 +242,4 @@ class Reunion {
     }
 }
 
-module.exports = Reunion;
+module.exports = Reunion; 
