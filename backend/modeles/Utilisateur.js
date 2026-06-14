@@ -62,8 +62,20 @@ class Utilisateur {
      */
     static async recupererTousLesEtudiants() {
         const resultat = await pool.query(
-            'SELECT id, email, nom, role FROM utilisateurs WHERE role = $1',
+            'SELECT id, email, nom, role FROM utilisateurs WHERE role = $1 ORDER BY nom',
             ['etudiant']
+        );
+        return resultat.rows;
+    }
+
+    /**
+     * Récupère tous les enseignants
+     * @returns {Promise<Array>} Liste des enseignants
+     */
+    static async recupererTousLesEnseignants() {
+        const resultat = await pool.query(
+            'SELECT id, email, nom, role FROM utilisateurs WHERE role = $1 ORDER BY nom',
+            ['enseignant']
         );
         return resultat.rows;
     }
