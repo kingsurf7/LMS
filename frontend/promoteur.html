@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduLMS - Tableau de bord Promoteur</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Barre de navigation -->
+    <nav class="barre-navigation">
+        <div class="conteneur">
+            <div class="logo">
+                <h1>📚 EduLMS</h1>
+            </div>
+            <div class="liens-navigation">
+                <a href="#" class="lien-actif">Tableau de bord</a>
+                <a href="#" onclick="chargerTousLesCours()">Tous les cours</a>
+                <a href="#" onclick="chargerTousLesEtudiants()">Étudiants</a>
+            </div>
+            <div class="info-utilisateur">
+                <span>👔 <span id="nomPromoteur"></span></span>
+                <button class="btn btn-danger btn-petit" onclick="deconnexion()">Déconnexion</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="tableau-bord">
+        <div class="conteneur">
+            <div class="en-tete-tableau-bord">
+                <h1 class="titre-tableau-bord">Tableau de bord Promoteur</h1>
+                <button class="btn btn-principal" onclick="ouvrirModalCours()">+ Nouveau cours</button>
+            </div>
+
+            <!-- Section Statistiques -->
+            <div class="grille-3">
+                <div class="carte">
+                    <h3>📚 Total cours</h3>
+                    <p id="totalCours" class="statistique">0</p>
+                </div>
+                <div class="carte">
+                    <h3>👨‍🎓 Total étudiants</h3>
+                    <p id="totalEtudiants" class="statistique">0</p>
+                </div>
+                <div class="carte">
+                    <h3>🎓 Certificats délivrés</h3>
+                    <p id="totalCertificats" class="statistique">0</p>
+                </div>
+            </div>
+
+            <!-- Section Tous les cours -->
+            <div class="carte">
+                <div class="en-tete-carte">
+                    <h3 class="titre-carte">📚 Tous les cours</h3>
+                </div>
+                <div id="listeCours" class="liste-cours">
+                    <p class="texte-centre">Chargement des cours...</p>
+                </div>
+            </div>
+
+            <!-- Section Tous les étudiants -->
+            <div class="carte">
+                <div class="en-tete-carte">
+                    <h3 class="titre-carte">👨‍🎓 Tous les étudiants</h3>
+                </div>
+                <div id="listeEtudiants" class="liste-etudiants">
+                    <p class="texte-centre">Chargement des étudiants...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Création de cours -->
+    <div id="modalCours" class="modal">
+        <div class="contenu-modal">
+            <span class="fermer">&times;</span>
+            <h2>Créer un nouveau cours</h2>
+            <form id="formCours">
+                <input type="text" id="titreCours" placeholder="Titre du cours" required>
+                <textarea id="descriptionCours" placeholder="Description du cours" rows="3"></textarea>
+                <button type="button" class="btn btn-principal" onclick="creerCours()">Créer le cours</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Génération de certificat -->
+    <div id="modalCertificat" class="modal">
+        <div class="contenu-modal">
+            <span class="fermer">&times;</span>
+            <h2>Générer un certificat</h2>
+            <form id="formCertificat">
+                <select id="etudiantCertificat" required>
+                    <option value="">Sélectionner un étudiant</option>
+                </select>
+                <select id="coursCertificat" required>
+                    <option value="">Sélectionner un cours</option>
+                </select>
+                <button type="button" class="btn btn-principal" onclick="genererCertificat()">Générer le certificat</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/promoteur.js"></script>
+</body>
+</html>
