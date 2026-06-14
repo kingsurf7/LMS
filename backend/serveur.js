@@ -79,6 +79,9 @@ app.post('/api/upload', upload.single('fichier'), (req, res) => {
     });
 });
 
+// Route statique pour les fichiers uploadés
+app.use('/telechargements', express.static(path.join(__dirname, 'telechargements')));
+
 // =====================================================
 // DÉMARRAGE DU SERVEUR AVEC SOCKET.IO
 // =====================================================
