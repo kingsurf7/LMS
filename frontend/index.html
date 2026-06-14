@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduLMS - Plateforme d'Apprentissage</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Barre de navigation -->
+    <nav class="barre-navigation">
+        <div class="conteneur">
+            <div class="logo">
+                <h1>📚 EduLMS</h1>
+            </div>
+            <div class="liens-navigation">
+                <a href="#" class="lien-actif">Accueil</a>
+                <a href="#fonctionnalites">Fonctionnalités</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="boutons-navigation">
+                <button class="btn btn-secondaire" onclick="ouvrirModalConnexion()">Connexion</button>
+                <button class="btn btn-principal" onclick="ouvrirModalInscription()">Inscription</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Section Héro -->
+    <header class="hero">
+        <div class="conteneur">
+            <div class="contenu-hero">
+                <h1>Plateforme d'Apprentissage Moderne</h1>
+                <p>Apprenez à votre rythme avec nos cours interactifs, évaluations et certifications</p>
+                <div class="boutons-hero">
+                    <button class="btn btn-principal btn-grand" onclick="ouvrirModalInscription()">Commencer Gratuitement</button>
+                    <button class="btn btn-secondaire btn-grand" onclick="ouvrirModalConnexion()">Déjà inscrit ?</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Section Fonctionnalités -->
+    <section id="fonctionnalites" class="fonctionnalites">
+        <div class="conteneur">
+            <h2 class="titre-section">Pourquoi choisir EduLMS ?</h2>
+            <div class="grille-fonctionnalites">
+                <div class="carte-fonctionnalite">
+                    <div class="icone-fonctionnalite">📹</div>
+                    <h3>Cours Multimédia</h3>
+                    <p>PDF, vidéos, et ressources interactives pour un apprentissage complet</p>
+                </div>
+                <div class="carte-fonctionnalite">
+                    <div class="icone-fonctionnalite">📊</div>
+                    <h3>Évaluations Interactives</h3>
+                    <p>Quiz et examens pour valider vos connaissances</p>
+                </div>
+                <div class="carte-fonctionnalite">
+                    <div class="icone-fonctionnalite">🎓</div>
+                    <h3>Certification</h3>
+                    <p>Obtenez des certificats reconnus pour chaque module validé</p>
+                </div>
+                <div class="carte-fonctionnalite">
+                    <div class="icone-fonctionnalite">📈</div>
+                    <h3>Suivi de Progression</h3>
+                    <p>Visualisez votre avancement en temps réel</p>
+                </div>
+                <div class="carte-fonctionnalite">
+                    <div class="icone-fonctionnalite">🎥</div>
+                    <h3>Visioconférence</h3>
+                    <p>Réunions en direct avec partage d'écran et tableau blanc</p>
+                </div>
+                <div class="carte-fonctionnalite">
+                    <div class="icone-fonctionnalite">💬</div>
+                    <h3>Chat en direct</h3>
+                    <p>Communication en temps réel avec les enseignants</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modals -->
+    <div id="modalConnexion" class="modal">
+        <div class="contenu-modal">
+            <span class="fermer">&times;</span>
+            <h2>Connexion</h2>
+            <form id="formulaireConnexion">
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Mot de passe" required>
+                <button type="submit" class="btn btn-principal">Se connecter</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="modalInscription" class="modal">
+        <div class="contenu-modal">
+            <span class="fermer">&times;</span>
+            <h2>Inscription</h2>
+            <form id="formulaireInscription">
+                <input type="text" placeholder="Nom complet" required>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Mot de passe" required>
+                <select required>
+                    <option value="">Sélectionnez votre rôle</option>
+                    <option value="etudiant">Étudiant</option>
+                    <option value="enseignant">Enseignant</option>
+                    <option value="promoteur">Promoteur</option>
+                </select>
+                <button type="submit" class="btn btn-principal">S'inscrire</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+          </html>
