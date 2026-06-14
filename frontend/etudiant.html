@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduLMS - Tableau de bord Étudiant</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Barre de navigation -->
+    <nav class="barre-navigation">
+        <div class="conteneur">
+            <div class="logo">
+                <h1>📚 EduLMS</h1>
+            </div>
+            <div class="liens-navigation">
+                <a href="#" class="lien-actif">Mes cours</a>
+                <a href="#" onclick="chargerMesReunions()">Mes réunions</a>
+                <a href="#" onclick="chargerMesCertificats()">Mes certificats</a>
+            </div>
+            <div class="info-utilisateur">
+                <span>👨‍🎓 <span id="nomEtudiant"></span></span>
+                <button class="btn btn-danger btn-petit" onclick="deconnexion()">Déconnexion</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="tableau-bord">
+        <div class="conteneur">
+            <div class="en-tete-tableau-bord">
+                <h1 class="titre-tableau-bord">Mes apprentissages</h1>
+            </div>
+
+            <!-- Section Progression globale -->
+            <div class="carte">
+                <h3 class="titre-carte">📊 Ma progression globale</h3>
+                <div id="progressionGlobale" class="barre-progression">
+                    <div class="remplissage-progression" style="width: 0%"></div>
+                </div>
+                <p id="texteProgression" class="texte-centre">0% complété</p>
+            </div>
+
+            <!-- Section Mes Cours -->
+            <div class="carte">
+                <div class="en-tete-carte">
+                    <h3 class="titre-carte">📚 Mes cours</h3>
+                </div>
+                <div id="listeCours" class="liste-cours">
+                    <p class="texte-centre">Chargement des cours...</p>
+                </div>
+            </div>
+
+            <!-- Section Réunions à venir -->
+            <div class="carte">
+                <div class="en-tete-carte">
+                    <h3 class="titre-carte">🎥 Réunions à venir</h3>
+                </div>
+                <div id="listeReunions" class="liste-reunions">
+                    <p class="texte-centre">Chargement des réunions...</p>
+                </div>
+            </div>
+
+            <!-- Section Certificats -->
+            <div class="carte">
+                <div class="en-tete-carte">
+                    <h3 class="titre-carte">🎓 Mes certificats</h3>
+                </div>
+                <div id="listeCertificats" class="liste-certificats">
+                    <p class="texte-centre">Chargement des certificats...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Détail du cours -->
+    <div id="modalCoursDetail" class="modal">
+        <div class="contenu-modal grand">
+            <span class="fermer">&times;</span>
+            <h2 id="coursDetailTitre"></h2>
+            <p id="coursDetailDescription"></p>
+            <div id="coursDetailLecons"></div>
+        </div>
+    </div>
+
+    <!-- Modal Évaluation -->
+    <div id="modalEvaluation" class="modal">
+        <div class="contenu-modal">
+            <span class="fermer">&times;</span>
+            <h2 id="evaluationTitre"></h2>
+            <div id="questionsEvaluation"></div>
+            <button class="btn btn-principal" onclick="soumettreEvaluation()">Soumettre</button>
+        </div>
+    </div>
+
+    <!-- Modal Visionnage leçon -->
+    <div id="modalLecon" class="modal">
+        <div class="contenu-modal grand">
+            <span class="fermer">&times;</span>
+            <h2 id="leconTitre"></h2>
+            <div id="leconContenu"></div>
+            <div id="leconEvaluation"></div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/etudiant.js"></script>
+</body>
+                  </html>
