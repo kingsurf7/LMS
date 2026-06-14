@@ -52,4 +52,4 @@ function verifierRoles(...rolesAutorises) {
 }
 
 // Exportation des middlewares
-module.exports = { verifierToken, verifierRoles };
+module.exports = { verifierToken, verifierRoles }; 
