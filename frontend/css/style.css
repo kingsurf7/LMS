@@ -1,0 +1,497 @@
+/* ===================================================== */
+/* STYLES GLOBAUX DE LA PLATEFORME LMS */
+/* ===================================================== */
+
+:root {
+    --couleur-principale: #6366f1;
+    --couleur-principale-foncee: #4f46e5;
+    --couleur-secondaire: #10b981;
+    --couleur-danger: #ef4444;
+    --couleur-avertissement: #f59e0b;
+    --couleur-foncee: #1f2937;
+    --couleur-claire: #f3f4f6;
+    --couleur-grise: #6b7280;
+    --blanc: #ffffff;
+    --ombre: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --ombre-grande: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--couleur-foncee);
+    line-height: 1.6;
+    background: var(--couleur-claire);
+}
+
+.conteneur {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ===================================================== */
+/* BARRE DE NAVIGATION */
+/* ===================================================== */
+
+.barre-navigation {
+    background: var(--blanc);
+    box-shadow: var(--ombre);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.barre-navigation .conteneur {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 20px;
+}
+
+.logo h1 {
+    color: var(--couleur-principale);
+    font-size: 1.5rem;
+}
+
+.liens-navigation {
+    display: flex;
+    gap: 2rem;
+}
+
+.liens-navigation a {
+    text-decoration: none;
+    color: var(--couleur-grise);
+    transition: color 0.3s;
+}
+
+.liens-navigation a:hover, .lien-actif {
+    color: var(--couleur-principale);
+}
+
+.boutons-navigation {
+    display: flex;
+    gap: 1rem;
+}
+
+/* ===================================================== */
+/* BOUTONS */
+/* ===================================================== */
+
+.btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.btn-principal {
+    background: var(--couleur-principale);
+    color: var(--blanc);
+}
+
+.btn-principal:hover {
+    background: var(--couleur-principale-foncee);
+    transform: translateY(-2px);
+}
+
+.btn-secondaire {
+    background: transparent;
+    border: 2px solid var(--couleur-principale);
+    color: var(--couleur-principale);
+}
+
+.btn-secondaire:hover {
+    background: var(--couleur-principale);
+    color: var(--blanc);
+}
+
+.btn-danger {
+    background: var(--couleur-danger);
+    color: var(--blanc);
+}
+
+.btn-danger:hover {
+    background: #dc2626;
+}
+
+.btn-grand {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+}
+
+.btn-petit {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+}
+
+/* ===================================================== */
+/* SECTION HERO */
+/* ===================================================== */
+
+.hero {
+    padding: 120px 0 80px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: var(--blanc);
+    text-align: center;
+}
+
+.contenu-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.contenu-hero p {
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.boutons-hero {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+/* ===================================================== */
+/* SECTION FONCTIONNALITÉS */
+/* ===================================================== */
+
+.fonctionnalites {
+    padding: 80px 0;
+    background: var(--blanc);
+}
+
+.titre-section {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    color: var(--couleur-foncee);
+}
+
+.grille-fonctionnalites {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.carte-fonctionnalite {
+    background: var(--couleur-claire);
+    padding: 2rem;
+    border-radius: 1rem;
+    text-align: center;
+    transition: transform 0.3s;
+    box-shadow: var(--ombre);
+}
+
+.carte-fonctionnalite:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--ombre-grande);
+}
+
+.icone-fonctionnalite {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.carte-fonctionnalite h3 {
+    margin-bottom: 1rem;
+    color: var(--couleur-foncee);
+}
+
+/* ===================================================== */
+/* MODALS */
+/* ===================================================== */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s;
+}
+
+.contenu-modal {
+    background: var(--blanc);
+    margin: 10% auto;
+    padding: 2rem;
+    border-radius: 1rem;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+    animation: slideDown 0.3s;
+}
+
+.contenu-modal.grand {
+    max-width: 900px;
+}
+
+.fermer {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--couleur-grise);
+}
+
+.fermer:hover {
+    color: var(--couleur-foncee);
+}
+
+.contenu-modal h2 {
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.contenu-modal input,
+.contenu-modal select,
+.contenu-modal textarea {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.contenu-modal button {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+/* ===================================================== */
+/* DASHBOARD */
+/* ===================================================== */
+
+.tableau-bord {
+    padding: 80px 20px 40px;
+}
+
+.en-tete-tableau-bord {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.titre-tableau-bord {
+    font-size: 2rem;
+    color: var(--couleur-foncee);
+}
+
+.info-utilisateur {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* ===================================================== */
+/* CARTES */
+/* ===================================================== */
+
+.carte {
+    background: var(--blanc);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--ombre);
+}
+
+.en-tete-carte {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.titre-carte {
+    font-size: 1.25rem;
+    color: var(--couleur-foncee);
+}
+
+/* ===================================================== */
+/* BARRE DE PROGRESSION */
+/* ===================================================== */
+
+.barre-progression {
+    width: 100%;
+    height: 8px;
+    background: var(--couleur-claire);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 1rem 0;
+}
+
+.remplissage-progression {
+    height: 100%;
+    background: var(--couleur-secondaire);
+    transition: width 0.3s;
+}
+
+/* ===================================================== */
+/* GRILLES */
+/* ===================================================== */
+
+.grille-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+}
+
+.grille-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+/* ===================================================== */
+/* LISTE DES COURS/LEÇONS */
+/* ===================================================== */
+
+.liste-cours {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.element-cours {
+    background: var(--couleur-claire);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s;
+}
+
+.element-cours:hover {
+    transform: translateX(5px);
+    box-shadow: var(--ombre);
+}
+
+.info-cours h4 {
+    margin-bottom: 0.25rem;
+}
+
+.info-cours p {
+    font-size: 0.875rem;
+    color: var(--couleur-grise);
+}
+
+/* ===================================================== */
+/* RÉUNIONS */
+/* ===================================================== */
+
+.liste-reunions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.element-reunion {
+    background: var(--couleur-claire);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.info-reunion h4 {
+    margin-bottom: 0.25rem;
+}
+
+.info-reunion small {
+    display: block;
+    color: var(--couleur-grise);
+    margin-top: 0.25rem;
+}
+
+.actions-reunion {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* ===================================================== */
+/* ANIMATIONS */
+/* ===================================================== */
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* ===================================================== */
+/* RÉPONSIVE */
+/* ===================================================== */
+
+@media (max-width: 768px) {
+    .liens-navigation {
+        display: none;
+    }
+    
+    .contenu-hero h1 {
+        font-size: 2rem;
+    }
+    
+    .boutons-hero {
+        flex-direction: column;
+    }
+    
+    .grille-fonctionnalites {
+        grid-template-columns: 1fr;
+    }
+    
+    .en-tete-tableau-bord {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .grille-2, .grille-3 {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===================================================== */
+/* UTILITAIRES */
+/* ===================================================== */
+
+.texte-centre {
+    text-align: center;
+}
+
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mt-4 { margin-top: 2rem; }
+
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.mb-4 { margin-bottom: 2rem; }
