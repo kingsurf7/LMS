@@ -66,3 +66,31 @@ class Progression {
                 COUNT(DISTINCT CASE WHEN p.terminee = true THEN l.id END) as lecons_terminees
             FROM lecons l
             LEFT JOIN progressions p ON p.lecon_id = l.id AND p.etudiant_id = $1
+            WHERE l.cours_id = $2
+        `, [etudiantId, coursId]);
+        
+        const { total_lecons, lecons_terminees } = resultat.rows[0];
+        if (total_lecons === 0) return 0;
+        
+        return Math.round((lecons_terminees / total_lecons) * 100);
+    }
+
+    /**
+     * Récupère toutes les progressions d'un étudiant
+     * @param {number} etudiantId - ID de l'étudiant
+     * @returns {Promise<Array>} Liste des progressions
+     */
+    static async trouverParEtudiant(etudiantId) {
+        const resultat = await pool.query(`
+            SELECT p.*, l.titre as titre_lecon, c.titre as titre_cours
+            FROM progressions p
+            JOIN lecons l ON p.lecon_id = l.id
+            JOIN cours c ON l.cours_id = c.id
+            WHERE p.etudiant_id = $1
+            ORDER BY p.date_completion DESC
+        `, [etudiantId]);
+        return resultat.rows;
+    }
+}
+
+module.exports = Progression; 
