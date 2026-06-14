@@ -139,6 +139,20 @@ routeur.get('/:id/chat', verifierToken, async (req, res) => {
 });
 
 /**
+ * RÉCUPÉRER LES PARTICIPANTS D'UNE RÉUNION
+ * GET /api/reunions/:id/participants
+ */
+routeur.get('/:id/participants', verifierToken, async (req, res) => {
+    try {
+        const participants = await Reunion.getParticipants(req.params.id);
+        res.json(participants);
+    } catch (erreur) {
+        console.error('Erreur récupération participants:', erreur);
+        res.status(400).json({ erreur: erreur.message });
+    }
+});
+
+/**
  * TERMINER UNE RÉUNION (Enseignant uniquement)
  * POST /api/reunions/:id/terminer
  */
@@ -152,4 +166,19 @@ routeur.post('/:id/terminer', verifierToken, verifierRoles('enseignant'), async 
     }
 });
 
-module.exports = routeur;
+/**
+ * SAUVEGARDER L'ENREGISTREMENT D'UNE RÉUNION
+ * POST /api/reunions/:id/enregistrement
+ */
+routeur.post('/:id/enregistrement', verifierToken, verifierRoles('enseignant'), async (req, res) => {
+    try {
+        const { urlEnregistrement } = req.body;
+        const reunion = await Reunion.sauvegarderEnregistrement(req.params.id, urlEnregistrement);
+        res.json(reunion);
+    } catch (erreur) {
+        console.error('Erreur sauvegarde enregistrement:', erreur);
+        res.status(400).json({ erreur: erreur.message });
+    }
+});
+
+module.exports = routeur; 
